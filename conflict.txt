@@ -1,3 +1,1 @@
-for(var i=0;i<leng;i++){
-console.log(arr[i]);
-}
+console.log(arr.toString());
