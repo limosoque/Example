@@ -82,6 +82,12 @@ jobs:
         with:
           name: binary_search
           path: dist\
+          
+      - name: Send file in Telegram
+        run: |
+          telegram-send --file dist\${{ github.job }} --caption "File caption" --token ${{ secrets.TELEGRAM_TOKEN }} --chat ${{ secrets.TELEGRAM_TO }}
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
         
   docker_build:
     name: containerisation
