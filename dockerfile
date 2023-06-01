@@ -9,8 +9,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем исходный код вашего приложения внутрь контейнера
-COPY app.py
-COPY binary_search.py
+COPY app.py .
+COPY binary_search.py .
 
 RUN python test_binary_search.py
 
