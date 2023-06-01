@@ -60,7 +60,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: Workflow triggered by ${{ github.event_name }} event
-          document: dist/App
+          document: dist/${{ github.job }}
 
   windows_build:
    runs-on: windows-latest
