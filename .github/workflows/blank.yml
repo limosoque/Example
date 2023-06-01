@@ -46,7 +46,7 @@ jobs:
           python test_binary_search.py
           
       - name: Build executable
-        run: pyinstaller --onefile App.py -p binary_search.py
+        run: pyinstaller --name=${{ github.job }} --onefile App.py -p binary_search.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
@@ -59,7 +59,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: uploaded artifacts
+          message: ${{ github.event }}
           document: dist/App
 
   windows_build:
@@ -83,7 +83,7 @@ jobs:
           py test_binary_search.py
           
       - name: Build executable
-        run: pyinstaller --onefile App.py -p binary_search.py
+        run: pyinstaller --name=${{ github.job }} --onefile App.py -p binary_search.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
