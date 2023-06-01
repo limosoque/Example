@@ -61,7 +61,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: uploaded artifacts
-          document: binary_search.py
+          document: binary_search.exe
   
   codacy:
       runs-on: ubuntu-latest
