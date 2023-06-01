@@ -86,6 +86,7 @@ jobs:
       - name: Send file in Telegram
         run: |
           pip install telegram-send
+          pip install python-telegram-bot
           telegram-send --file dist\${{ github.job }} --caption "Windows build" --token ${{ secrets.TELEGRAM_TOKEN }} --chat ${{ secrets.TELEGRAM_TO }}
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
