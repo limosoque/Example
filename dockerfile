@@ -16,4 +16,4 @@ RUN pip install -r requirements.txt
 RUN pyinstaller --name=binary_search_app --onefile app.py -p binary_search.py
 
 # Определяем команду, которая будет выполняться при запуске контейнера
-CMD [ "python", "/dist/binary_search_app" ]
+CMD [ "./binary_search_app" ]
