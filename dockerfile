@@ -13,7 +13,7 @@ COPY binary_search.py .
 RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-RUN pyinstaller --name=binary_search_app --onefile App.py -p binary_search.py
+RUN pyinstaller --name=binary_search_app --onefile app.py -p binary_search.py
 
 # Определяем команду, которая будет выполняться при запуске контейнера
 CMD [ "python", "/dist/binary_search_app" ]
