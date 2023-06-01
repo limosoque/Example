@@ -22,39 +22,47 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-#   linux_build:
-#     # The type of runner that the job will run on
-#     runs-on: ubuntu-latest
+  linux_build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
 
-#     # Steps represent a sequence of tasks that will be executed as part of the job
-#     steps:
-#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#       - uses: actions/checkout@v3
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
 
-#       - name: Setup Python
-#         uses: actions/setup-python@v2
-#         with:
-#           python-version: "3.x"
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
           
-#       - name: Install dependecies
-#         run: |
-#           python -m pip install --upgrade pip
-#           pip install -r requirements.txt
+      - name: Install dependecies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
           
-#       - name: Run tests
-#         run: |
-#           python test_binary_search.py
+      - name: Run tests
+        run: |
+          python test_binary_search.py
           
-#       - name: Build executable
-#         run: pyinstaller --onefile binary_search.py
+      - name: Build executable
+        run: pyinstaller --onefile --windowed binary_search.py
 
-#       - name: Upload artifact
-#         uses: actions/upload-artifact@v2
-#         with:
-#           name: binary_search
-#           path: dist/binary_search
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: binary_search
+          path: dist/binary_search
+          
+      - name: Send Telegram message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: uploaded artifacts
+          document: dist/binary_search
 
-  send_telegram:
+  windows_build:
    runs-on: windows-latest
    steps:
       - name: build windows .exe
@@ -82,14 +90,6 @@ jobs:
         with:
           name: binary_search
           path: dist\
-      
-      - name: Send Telegram message
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: uploaded artifacts
-          document: dist\binary_search
   
 #   codacy:
 #       runs-on: ubuntu-latest
