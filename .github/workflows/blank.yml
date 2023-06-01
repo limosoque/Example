@@ -95,7 +95,7 @@ jobs:
         - name: Download artifact
           uses: actions/download-artifact@v3
           with:
-            name: windows_build.exe
+            name: binary_search
             
         - run: ls -la
 
