@@ -95,7 +95,7 @@ jobs:
         - name: Download artifact
           uses: actions/download-artifact@v3
           with:
-            name: binary_search
+            name: windows_build.exe
             
         - run: ls -la
 
@@ -105,7 +105,7 @@ jobs:
             to: ${{ secrets.TELEGRAM_TO }}
             token: ${{ secrets.TELEGRAM_TOKEN }}
             message: Workflow triggered by ${{ github.event_name }} event
-            document: dist/binary_search
+            document: windows_build.exe
 
   docker_build:
       name: containerisation
