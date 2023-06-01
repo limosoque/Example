@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: binary_search
-          path: binary_search.py
+          path: binary_search.exe
           # path: /home/runner/work/Example/Example/dist/binary_search
           
       - name: Send Telegram message
