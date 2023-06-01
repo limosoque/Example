@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-FROM python:3.9-slim
+FROM python:latest
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py .
 COPY binary_search.py .
 
-RUN pyinstaller --name=binary_search_app --onefile app.py
+RUN pyinstaller --name=binary_search_app --onefile app.py -p binary_search.py
 
 
 # Определяем команду, которая будет выполняться при запуске контейнера
