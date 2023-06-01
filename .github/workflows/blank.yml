@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: binary_search
-          path: binary_search.exe
+          path: binary_search.pkg
           # path: /home/runner/work/Example/Example/dist/binary_search
           
       - name: Send Telegram message
@@ -61,7 +61,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: uploaded artifacts
-          document: binary_search.exe
+          document: binary_search.pkg
   
   codacy:
       runs-on: ubuntu-latest
