@@ -6,14 +6,13 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN py -m pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем исходный код вашего приложения внутрь контейнера
 COPY app.py
 COPY binary_search.py
 
-RUN py test_binary_search.py
+RUN python test_binary_search.py
 
 pyinstaller --name=binary_search_app --onefile App.py -p binary_search.py
 
