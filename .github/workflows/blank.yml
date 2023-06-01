@@ -62,3 +62,16 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: uploaded artifacts
           document: binary_search.py
+          
+  pysa:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - name: Run Pysa Action
+          uses: facebook/pysa-action@latest
+          with:
+            repo-directory: './'
+            requirements-path: 'requirements.txt'
+            infer-types: true
+            include-default-sapp-filters: true
+            #sapp-filters-path: 'sapp_filters.json'
