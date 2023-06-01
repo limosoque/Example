@@ -81,7 +81,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: binary_search
-          path: dist\binary_search
+          path: dist\
       
       - name: Send Telegram message
         uses: appleboy/telegram-action@master
