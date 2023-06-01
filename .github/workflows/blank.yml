@@ -46,7 +46,7 @@ jobs:
           python test_binary_search.py
           
       - name: Build executable
-        run: pyinstaller --onefile --windowed binary_search.py
+        run: pyinstaller --onefile App.py -p binary_search.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
@@ -83,7 +83,7 @@ jobs:
           py test_binary_search.py
           
       - name: Build executable
-        run: pyinstaller --onefile binary_search.py
+        run: pyinstaller --onefile App.py -p binary_search.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
