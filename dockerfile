@@ -12,7 +12,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py .
 COPY binary_search.py .
 
-RUN python test_binary_search.py
+RUN python -m pip install --upgrade pip
+RUN pip install -r requirements.txt
 
 pyinstaller --name=binary_search_app --onefile App.py -p binary_search.py
 
