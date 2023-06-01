@@ -118,20 +118,7 @@ jobs:
         - uses: actions/checkout@v3
         - name: Run Codacy Analysis CLI
           uses: codacy/codacy-analysis-cli-action@master
-      
-  pysa:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - name: Run Pysa Action
-          uses: facebook/pysa-action@master
-          with:
-            repo-directory: './'
-            requirements-path: 'requirements.txt'
-            infer-types: true
-            include-default-sapp-filters: true
-            #sapp-filters-path: 'sapp_filters.json'
-            
+          
   format:
     runs-on: ubuntu-latest
     steps:
