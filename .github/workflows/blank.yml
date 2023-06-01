@@ -112,22 +112,44 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/binary_search_app:latest
       
   
-#   codacy:
-#       runs-on: ubuntu-latest
-#       steps:
-#         - uses: actions/checkout@v3
-#         - name: Run Codacy Analysis CLI
-#           uses: codacy/codacy-analysis-cli-action@master
+  codacy:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: Run Codacy Analysis CLI
+          uses: codacy/codacy-analysis-cli-action@master
       
-#   pysa:
-#       runs-on: ubuntu-latest
-#       steps:
-#         - uses: actions/checkout@v2
-#         - name: Run Pysa Action
-#           uses: facebook/pysa-action@master
-#           with:
-#             repo-directory: './'
-#             requirements-path: 'requirements.txt'
-#             infer-types: true
-#             include-default-sapp-filters: true
-#             #sapp-filters-path: 'sapp_filters.json'
+  pysa:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: Run Pysa Action
+          uses: facebook/pysa-action@master
+          with:
+            repo-directory: './'
+            requirements-path: 'requirements.txt'
+            infer-types: true
+            include-default-sapp-filters: true
+            #sapp-filters-path: 'sapp_filters.json'
+            
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install black
+      - name: Format code
+        run: black .
+      - name: Commit changes
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git commit -am "Auto-format Python code [skip ci]"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
