@@ -6,9 +6,6 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install pyinstaller
-
 # Копируем исходный код вашего приложения внутрь контейнера
 COPY app.py .
 COPY binary_search.py .
@@ -16,7 +13,7 @@ COPY binary_search.py .
 RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-pyinstaller --name=binary_search_app --onefile App.py -p binary_search.py
+RUN pyinstaller --name=binary_search_app --onefile App.py -p binary_search.py
 
 # Определяем команду, которая будет выполняться при запуске контейнера
 CMD [ "python", "/dist/binary_search_app" ]
