@@ -46,7 +46,7 @@ jobs:
           python test_binary_search.py
           
       - name: Build executable
-        run: pyinstaller --name=${{ github.job }} --onefile App.py -p binary_search.py
+        run: pyinstaller --name=${{ github.job }} --onefile app.py -p binary_search.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -82,7 +82,7 @@ jobs:
           py test_binary_search.py
           
       - name: Build executable
-        run: pyinstaller --name=${{ github.job }} --onefile App.py -p binary_search.py
+        run: pyinstaller --name=${{ github.job }} --onefile app.py -p binary_search.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
