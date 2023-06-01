@@ -87,7 +87,7 @@ jobs:
 
   send_windows_build:
      needs: windows_build
-     runs-on: linux-latest
+     runs-on: ubuntu-latest
 
      steps:
         - uses: actions/checkout@v3
