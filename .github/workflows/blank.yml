@@ -96,6 +96,8 @@ jobs:
           uses: actions/download-artifact@v3
           with:
             name: binary_search
+            
+        - run: ls -la
 
         - name: Send Telegram message
           uses: appleboy/telegram-action@master
