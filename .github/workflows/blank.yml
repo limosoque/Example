@@ -60,7 +60,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: uploaded artifacts
-          document: dist/
+          document: dist/App
 
   windows_build:
    runs-on: windows-latest
