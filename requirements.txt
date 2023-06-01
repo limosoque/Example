@@ -1,7 +1,7 @@
 # This is a comment, to show how #-prefixed lines are ignored.
 # It is possible to specify requirements as plain names.
 pytest
-pyinstaller == 3.3
+pyinstaller == 3.2
 telegram-send
 
 # The syntax supported here is the same as that of requirement specifiers.
