@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: binary_search
-          path: dist/binary_search
+          path: dist/binary_search.exe
           # path: /home/runner/work/Example/Example/dist/binary_search
           
       - name: Send Telegram message
@@ -61,14 +61,14 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: uploaded artifacts
-          document: binary_search.exe
+          document: dist/binary_search.exe
   
-  codacy:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - name: Run Codacy Analysis CLI
-          uses: codacy/codacy-analysis-cli-action@master
+#   codacy:
+#       runs-on: ubuntu-latest
+#       steps:
+#         - uses: actions/checkout@v3
+#         - name: Run Codacy Analysis CLI
+#           uses: codacy/codacy-analysis-cli-action@master
       
 #   pysa:
 #       runs-on: ubuntu-latest
