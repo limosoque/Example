@@ -16,7 +16,7 @@ RUN pyinstaller --name=binary_search_app --onefile app.py -p binary_search.py
 # RUN pip uninstall -y -r requirements.txt && 
 
 FROM ubuntu:latest
-COPY --from=build ./binary_search_app ./binary_search_app
+COPY --from=build binary_search_app ./binary_search_app
 
 # Определяем команду, которая будет выполняться при запуске контейнера
 CMD [ "./binary_search_app" ]
