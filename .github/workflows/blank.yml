@@ -160,9 +160,15 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-          git commit -am "Auto-format Python code [skip ci]"
+          status=$(git status)
+          if [[ $status != *"nothing to commit"* ]]; then
+            git commit -am "Auto-format Python code [skip ci]"
+          else
+            exit 1  
+          fi
 
       - name: Push changes
+        if: ${{ success() }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
