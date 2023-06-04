@@ -1,4 +1,4 @@
-FROM ubuntu:latest as build
+FROM ubuntu:latest AS build
 FROM python:latest
 
 # Устанавливаем рабочую директорию внутри контейнера
