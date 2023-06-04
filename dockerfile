@@ -13,7 +13,7 @@ COPY app.py .
 COPY binary_search.py .
 
 RUN pyinstaller --name=binary_search_app --onefile app.py -p binary_search.py
-RUN ls /app
+RUN ls /app/dist
 # RUN pip uninstall -y -r requirements.txt
 
 
