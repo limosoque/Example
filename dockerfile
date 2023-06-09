@@ -1,21 +1,18 @@
-FROM ubuntu:latest AS build
 FROM python:latest
+WORKDIR app
 
-# Устанавливаем рабочую директорию внутри контейнера
-WORKDIR /app
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+#&& rm -rf /root/.cache/pip
 
-COPY requirements.txt .
-
-RUN python -m pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt && rm -rf /root/.cache/pip
-
-# Копируем исходный код вашего приложения внутрь контейнера
-COPY app.py .
-COPY binary_search.py .
+COPY app.py app.py
+COPY binary_search.py binary_search.py
 
 RUN pyinstaller --name=binary_search_app --onefile app.py -p binary_search.py
 # RUN pip uninstall -y -r requirements.txt
 
 FROM ubuntu:latest
+WORKDIR app
 COPY --from=build /app/dist/binary_search_app /app
 
 # Определяем команду, которая будет выполняться при запуске контейнера
