@@ -3,7 +3,7 @@ def binary_search(arr, find):
     while left <= right:
         middle = (left + right) // 2
         if arr[middle] == find:
-            return True
+            return False
         if arr[middle] > find:
             right = middle - 1
         else:
