@@ -152,7 +152,6 @@ jobs:
   self-hosted:
     runs-on: self-hosted
     needs: docker_build
-    timeout-minutes: 10
     
     steps:
       - uses: actions/checkout@v3
