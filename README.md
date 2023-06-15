@@ -58,7 +58,7 @@ Job auto_formatter устанавливает **black**, который форм
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           status=$(git status)
-          if [[ $status != *"nothing to commit"* ]]; then
+          if [[ $status != "nothing to commit" ]]; then
             git commit -am "Auto-format Python code"
             git push
           fi
