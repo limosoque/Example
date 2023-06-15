@@ -14,6 +14,6 @@ FROM ubuntu:latest
 WORKDIR app
 COPY --from=build /app/dist/binary_search_app /app
 COPY input.txt input.txt
-ENTRYPOINT sh -c /app/binary_search_app
+ENTRYPOINT sh -c /app/binary_search_app <
 #CMD sh -c '/app/binary_search_app < input.txt'
 #CMD [ "/app/binary_search_app" ]
