@@ -1,6 +1,6 @@
 from binary_search import binary_search
 
-help = "Запустить программу: 1", "\n", "Завершить программу: 2", "\n", "Справка: 3"
+help = "Запустить программу: 1", "Завершить программу: 2", "Справка: 3"
 command = 1
 print(help)
 while True:
