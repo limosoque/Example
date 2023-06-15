@@ -34,6 +34,7 @@ jobs:
       - name: Run test
         run: |
           pytest test_binary_search.py
+
   
   linux_build:
     name: build and upload in telegram
@@ -72,7 +73,7 @@ jobs:
 
 
   windows_build:
-     name: test, build and upload
+     name: build and upload
      needs: test
      runs-on: windows-latest
 
@@ -144,6 +145,18 @@ jobs:
             file: ./dockerfile
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/binary_search_app:latest
+      
+          
+  self-hosted:
+    runs-on: self-hosted
+    needs: docker_build
+    
+    steps:
+      - uses: actions/checkout@v3
+          
+      - name: Run docker image
+        run: |
+          docker run -it -p 8080:80 ${{ secrets.DOCKERHUB_USERNAME }}/binary_search_app:latest
     
   codacy_check:
       name: static code review
