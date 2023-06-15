@@ -157,7 +157,7 @@ jobs:
       - name: Run docker image
         run: |
           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/binary_search_app:latest
-          docker run ${{ secrets.DOCKERHUB_USERNAME }}/binary_search_app:latest input.txt
+          docker run ${{ secrets.DOCKERHUB_USERNAME }}/binary_search_app:latest
     
   codacy_check:
       name: static code review
