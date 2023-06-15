@@ -34,7 +34,7 @@ jobs:
           
       - name: Run test
         run: |
-          python test_binary_search.py
+          pytest test_binary_search.py
           
       - name: Build executable
         run: pyinstaller --name=${{ github.job }} --onefile app.py -p binary_search.py
