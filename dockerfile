@@ -13,5 +13,5 @@ RUN pyinstaller --name=binary_search_app --onefile app.py -p binary_search.py
 FROM ubuntu:latest
 WORKDIR app
 COPY --from=build /app/dist/binary_search_app /app
-
-CMD [ "/app/binary_search_app" ]
+ENTRYPOINT [ sh -c '/app/binary_search_app < input.txt' ]
+#CMD [ "/app/binary_search_app" ]
