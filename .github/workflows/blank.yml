@@ -15,10 +15,31 @@ on:
   workflow_dispatch:
 
 jobs:
-  linux_build:
-    name: test, build and upload in telegram
+  test:
     runs-on: ubuntu-latest
-
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
+          
+      - name: Install dependecies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+          
+      - name: Run test
+        run: |
+          pytest test_binary_search.py
+  
+  linux_build:
+    name: build and upload in telegram
+    needs: test
+    runs-on: ubuntu-latest
+      
     steps:
       - uses: actions/checkout@v3
 
@@ -31,10 +52,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          
-      - name: Run test
-        run: |
-          pytest test_binary_search.py
           
       - name: Build executable
         run: pyinstaller --name=${{ github.job }} --onefile app.py -p binary_search.py
@@ -56,6 +73,7 @@ jobs:
 
   windows_build:
      name: test, build and upload
+     needs: test
      runs-on: windows-latest
 
      steps:
@@ -70,10 +88,6 @@ jobs:
           run: |
             py -m pip install --upgrade pip
             pip install -r requirements.txt
-
-        - name: Run tests
-          run: |
-            py test_binary_search.py
 
         - name: Build executable
           run: pyinstaller --name=${{ github.job }} --onefile app.py -p binary_search.py
@@ -109,6 +123,7 @@ jobs:
 
   docker_build:
       name: containerisation
+      needs: test
       runs-on: ubuntu-latest
 
       steps:
@@ -132,6 +147,7 @@ jobs:
     
   codacy_check:
       name: static code review
+      needs: test
       runs-on: ubuntu-latest
 
       steps:
@@ -140,6 +156,7 @@ jobs:
         - uses: codacy/codacy-analysis-cli-action@master
              
   auto_formatter:
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
