@@ -16,4 +16,4 @@ while True:
     find = [int(x) for x in input().split()]
 
     for to_find in find:
-        print(binary_search(arr, to_find))
+        print(to_find, "в " if binary_search(arr, to_find) else "не в ", "массиве")
