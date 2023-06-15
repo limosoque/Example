@@ -162,13 +162,11 @@ jobs:
           git config --global user.name "GitHub Actions"
           status=$(git status)
           if [[ $status != *"nothing to commit"* ]]; then
-            git commit -am "Auto-format Python code [skip ci]"
-          else
-            exit 1  
+            git commit -am "Auto-format Python code"  
           fi
 
       - name: Push changes
-        if: ${{ success() }}
+        if: ${{ $status != *"nothing to commit"* }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
