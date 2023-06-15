@@ -6,11 +6,13 @@ on:
     paths-ignore:
      - ".github/workflows/**"
      - "**.txt"
+     - "**.md"
   pull_request:
     branches: [ "master" ]
     paths-ignore:
      - ".github/workflows/**"
      - "**.txt"
+     - "**.md"
 
   workflow_dispatch:
 
