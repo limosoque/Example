@@ -13,7 +13,7 @@ while True:
         print("Введите через пробел числа, которые хотите найти")
         find = [int(x) for x in input().split()]
         for to_find in find:
-        print(to_find, "в" if binary_search(arr, to_find) else "не в", "массиве")
+            print(to_find, "в" if binary_search(arr, to_find) else "не в", "массиве")
     else:
         print(help)
         continue
