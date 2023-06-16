@@ -146,7 +146,7 @@ jobs:
             context: .
             file: ./dockerfile
             push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/binary_search_app:latest
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/binary_search_app:$(date +'%Y-%m-%d_%H:%M:%S')
       
           
   self-hosted:
@@ -158,8 +158,8 @@ jobs:
           
       - name: Run docker image
         run: |
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/binary_search_app:latest
-          docker run ${{ secrets.DOCKERHUB_USERNAME }}/binary_search_app:latest
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/binary_search_app:$(date +'%Y-%m-%d_%H:%M:%S')
+          docker run ${{ secrets.DOCKERHUB_USERNAME }}/binary_search_app:$(date +'%Y-%m-%d_%H:%M:%S')
     
   codacy_check:
       name: static code review
